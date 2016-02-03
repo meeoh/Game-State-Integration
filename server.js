@@ -15,9 +15,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function(req,res){
+    console.log('posted');
     //on post call
-    data = {"test":"test"};
-    res.send("posted");
+    //data = {"test":"test"};
 });
 
 app.listen(3000, function () {
