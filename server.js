@@ -6,6 +6,10 @@ var express = require('express'),
 
 var app = express();
 
+var shameelIds = ["76561198192749214", "76561198009694224"];
+var nomarIds = ["76561198052716620"];
+var omasIds = ["76561197998478010"];
+
 app.use(bodyParser.json());
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
