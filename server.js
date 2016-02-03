@@ -1,9 +1,12 @@
 'use strict';
 
 var express = require('express'),
-    exphbs  = require('express-handlebars'); // "express-handlebars"
+    exphbs  = require('express-handlebars'), // "express-handlebars"
+    bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.json());
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -16,6 +19,10 @@ app.get('/', function (req, res) {
 
 app.post('/', function(req,res){
     console.log('posted');
+    console.log(req.body);
+    req.on('data', function(data){
+        console.log(data);
+    })
     //on post call
     //data = {"test":"test"};
 });
