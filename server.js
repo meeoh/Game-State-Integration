@@ -15,7 +15,11 @@ app.use(bodyParser.json());
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-var data = {};
+var data = {
+    shameel: {},
+    nomar: {},
+    omas: {}
+};
 
 app.get('/', function (req, res) {
     res.render('home', {"data":data});
