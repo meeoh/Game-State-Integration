@@ -27,10 +27,13 @@ app.get('/', function (req, res) {
 
 app.post('/', function(req,res){
     console.log('posted');
-    console.log(req.body);
-    var id = req.body.provider.steamid;
+    //console.log(req.body);
+    var payload = req.body;
+    var id = payload.provider.steamid;
     if(shameelIds.indexOf(id) > -1){
         //shameel id
+        //add game type, think its payload.map.mode
+        data.shameel.round = payload.map.round;
     }
     else if (nomarIds.indexOf(id) > -1){
         //nomar id
