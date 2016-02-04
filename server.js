@@ -24,6 +24,17 @@ app.get('/', function (req, res) {
 app.post('/', function(req,res){
     console.log('posted');
     console.log(req.body);
+    var id = req.body.provider.steamid;
+    if(shameelIds.indexOf(id) > -1){
+        //shameel id
+    }
+    else if (nomarIds.indexOf(id) > -1){
+        //nomar id
+    }
+    else if (omasIds.indexOf(id) > -1){
+        //omas id
+    }
+    
     //on post call
     //data = {"test":"test"};
 });
