@@ -5,6 +5,7 @@ This project is for users to be able to communicate their current status of a co
 Features include:
 - percentage complete
 - time spent in game
+- current round
 - request button (request to not start another game/come upstairs)
 
 ##Usage
