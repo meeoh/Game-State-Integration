@@ -24,9 +24,6 @@ app.get('/', function (req, res) {
 app.post('/', function(req,res){
     console.log('posted');
     console.log(req.body);
-    req.on('data', function(data){
-        console.log(data);
-    })
     //on post call
     //data = {"test":"test"};
 });
