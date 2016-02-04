@@ -1,6 +1,6 @@
 # Game-State-Integration
 
-This project is for users to be able to communicate their current status of a counter strike/dota game to others via an express server that receives postcalls from the game-state-integration features recently implemented by valve. This is meant for people to communicate to the rest of their family whetther or not they are in a game, and approimately how long it will take to finish.
+This project is for users to be able to communicate their current status of a counter strike/dota game to others via an express server that receives postcalls from the game-state-integration features recently implemented by valve. This is meant for people to communicate to the rest of their family whetther or not they are in a game, and approximately how long it will take to finish.
 
 Features include:
 - percentage complete
