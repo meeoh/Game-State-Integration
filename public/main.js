@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
 	$('.button-shameel').on('click', function(){
 		var curButton = $('.button-shameel');
 		curButton.removeClass('btn-primary');
