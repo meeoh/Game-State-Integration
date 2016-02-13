@@ -2,7 +2,14 @@
 
 var express = require('express'),
     exphbs  = require('express-handlebars'), // "express-handlebars"
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    TelegramBot = require('node-telegram-bot-api');
+
+    var token = '154596731:AAGCbbtw5FxMw29MnX-HoYhoKaKKPtJU-0w';
+
+    var bot = new TelegramBot(token, {polling:false});
+    var chatId = -119445285;
+
 
 var app = express();
 
@@ -25,18 +32,27 @@ app.get('/', function (req, res) {
     res.render('home', {"data":data});
 });
 
+app.post('/request/:name', function(req,res){
+    var name = req.params.name;
+    if(name.toLowerCase() == "shameel"){
+        bot.sendMessage(chatId, "@meeoh, requesting to come upstairs, dont start another");
+    }
+});
+
 app.post('/', function(req,res){
     console.log('posted');
-    console.log(req.body);
+    //console.log(req.body);
     var payload = req.body;
     var id = payload.provider.steamid;
     if(shameelIds.indexOf(id) > -1){
         //shameel id
         //add game type, think its payload.map.mode
+ //       console.log(payload);
         if(payload.map){
             if(payload.map.round){                
                 console.log('setting data');
-                data.shameel.round = payload.map.round;
+                data.shameel.percentComplete = Math.floor(payload.map.round/30*100);
+
             }
         }
     }
