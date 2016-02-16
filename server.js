@@ -1,17 +1,25 @@
 'use strict';
 
 var express = require('express'),
-    exphbs  = require('express-handlebars'), // "express-handlebars"
+    exphbs = require('express-handlebars'), // "express-handlebars"
     bodyParser = require('body-parser'),
     TelegramBot = require('node-telegram-bot-api');
 
-    var token = '154596731:AAGCbbtw5FxMw29MnX-HoYhoKaKKPtJU-0w';
+var token = '154596731:AAGCbbtw5FxMw29MnX-HoYhoKaKKPtJU-0w';
 
-    var bot = new TelegramBot(token, {polling:false});
-    var chatId = -119445285;
+var bot = new TelegramBot(token, { polling: false });
+var chatId = -119445285;
 
 
 var app = express();
+var io = require('socket.io')(app);
+
+io.on('connection', function(socket) {
+    socket.emit('news', { hello: 'world' });
+    socket.on('my other event', function(data) {
+        console.log(data);
+    });
+});
 
 app.use(express.static(__dirname + '/public'));
 
@@ -22,7 +30,7 @@ var omasIds = ["76561197998478010"];
 
 app.use(bodyParser.json());
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 var data = {
@@ -31,45 +39,43 @@ var data = {
     omas: {}
 };
 
-app.get('/', function (req, res) {
-    res.render('home', {"data":data});
+app.get('/', function(req, res) {
+    res.render('home', { "data": data });
 });
 
-app.post('/request/:name', function(req,res){
+app.post('/request/:name', function(req, res) {
     var name = req.params.name;
-    if(name.toLowerCase() == "shameel"){
+    if (name.toLowerCase() == "shameel") {
         bot.sendMessage(chatId, "@meeoh, requesting to come upstairs, dont start another");
     }
 });
 
-app.post('/', function(req,res){
+app.post('/', function(req, res) {
     console.log('posted');
     //console.log(req.body);
     var payload = req.body;
     var id = payload.provider.steamid;
-    if(shameelIds.indexOf(id) > -1){
+    if (shameelIds.indexOf(id) > -1) {
         //shameel id
         //add game type, think its payload.map.mode
- //       console.log(payload);
-        if(payload.map){
-            if(payload.map.round){                
+        //       console.log(payload);
+        if (payload.map) {
+            if (payload.map.round) {
                 console.log('setting data');
-                data.shameel.percentComplete = Math.floor(payload.map.round/30*100);
+                data.shameel.percentComplete = Math.floor(payload.map.round / 30 * 100);
 
             }
         }
-    }
-    else if (nomarIds.indexOf(id) > -1){
+    } else if (nomarIds.indexOf(id) > -1) {
         //nomar id
-    }
-    else if (omasIds.indexOf(id) > -1){
+    } else if (omasIds.indexOf(id) > -1) {
         //omas id
     }
-    
+
     //on post call
     //data = {"test":"test"};
 });
 
-app.listen(3000, function () {
+app.listen(3000, function() {
     console.log('express-handlebars example server listening on: 3000');
 });
