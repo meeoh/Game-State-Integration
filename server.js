@@ -12,14 +12,10 @@ var chatId = -119445285;
 
 
 var app = express();
-var io = require('socket.io')(app);
+var server = app.listen(3000);
+var io = require('socket.io').listen(server);
+console.log('express-handlebars example server listening on: 3000');
 
-io.on('connection', function(socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function(data) {
-        console.log(data);
-    });
-});
 
 app.use(express.static(__dirname + '/public'));
 
@@ -51,20 +47,23 @@ app.post('/request/:name', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-    console.log('posted');
+    // console.log('posted');
     //console.log(req.body);
     var payload = req.body;
     var id = payload.provider.steamid;
     if (shameelIds.indexOf(id) > -1) {
         //shameel id
-        //add game type, think its payload.map.mode
-        //       console.log(payload);
+        //console.log(payload);
         if (payload.map) {
-            if (payload.map.round) {
+            if (payload.map.round >= 0) {
                 console.log('setting data');
-                data.shameel.percentComplete = Math.floor(payload.map.round / 30 * 100);
-
+                var roundPercentage = Math.floor(payload.map.round / 30 * 100);
+                var data = { 'roundPercentage': roundPercentage };
+                io.emit('data', data);
             }
+        } else {
+            var data = { 'done': 1 };
+            io.emit('data', data);
         }
     } else if (nomarIds.indexOf(id) > -1) {
         //nomar id
@@ -76,6 +75,6 @@ app.post('/', function(req, res) {
     //data = {"test":"test"};
 });
 
-app.listen(3000, function() {
-    console.log('express-handlebars example server listening on: 3000');
+io.on('connection', function(socket) {
+    console.log('socket connected');
 });
