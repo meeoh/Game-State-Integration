@@ -23,24 +23,6 @@ app.use(express.static(__dirname + '/public'));
 var shameelIds = ["76561198192749214", "76561198009694224"];
 var nomarIds = ["76561198052716620"];
 var omasIds = ["76561197998478010"];
-var inGame = 0;
-
-countdown = 60;
-var onInterval = function() {
-    console.log(countdown);
-    countdown--;
-    if (countdown == 0 && inGame == 0) {
-        var data = { 'done': 1 };
-        io.emit('data', data);
-    }    
-    countdown = 60;
-    clearInterval(myInterval);
-    myInterval = setInterval(onInterval, 100);
-
-}
-};
-var myInterval = setInterval(onInterval, 100);
-
 
 
 
