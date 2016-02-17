@@ -36,41 +36,60 @@ app.get('/', function(req, res) {
     res.render('home');
 });
 
+var gameHandler = function(payload, player) {
+
+    if (payload.provider.name == 'Counter-Strike: Global Offensive') {
+        if (payload.map) {
+            if (payload.map.round >= 0) {
+                console.log('setting data');
+                var roundPercentage = Math.floor(payload.map.round / 30 * 100);
+                var data = { 'roundPercentage': roundPercentage };
+                io.emit('data:' + player, data);
+            }
+        } else {
+            var data = { 'done': 1 };
+            io.emit('data:' + player, data);
+        }
+    } else if (payload.provider.name == 'Dota 2') {
+        //find out how to calculate dota percentage
+    }
+    else {
+        var data = { 'done': 1 };
+        io.emit('data:' + player, data);
+    }
+
+}
+
 app.post('/request/:name', function(req, res) {
     var name = req.params.name;
     if (name.toLowerCase() == "shameel") {
         bot.sendMessage(chatId, "@meeoh, requesting to come upstairs, dont start another");
+    } else if (name.toLowerCase() == "nomar") {
+        bot.sendMessage(chatId, "@nomar, requesting to come upstairs, dont start another");
+    } else if (name.toLowerCase() == "omas") {
+        bot.sendMessage(chatId, "@Paytheo, requesting to come upstairs, dont start another");
+    } else if (name.toLowerCase() == "all") {
+        bot.sendMessage(chatId, "/all, requesting to come upstairs, dont start another");
     }
 });
 
 app.post('/', function(req, res) {
     // console.log('posted');
-    //console.log(req.body);
+    console.log(req.body);
     var payload = req.body;
-    if (payload.provider.steamid) {
-        var id = payload.provider.steamid;
+    if (payload.provider.steamid || payload.player.steamid) {
+        var id = payload.provider.steamid || payload.player.steamid;
         if (shameelIds.indexOf(id) > -1) {
             //shameel id
-            //console.log(payload);
-            if (payload.map) {
-                if (payload.map.round >= 0) {
-                    console.log('setting data');
-                    var roundPercentage = Math.floor(payload.map.round / 30 * 100);
-                    var data = { 'roundPercentage': roundPercentage };
-                    io.emit('data', data);
-                }
-            } else {
-                var data = { 'done': 1 };
-                io.emit('data', data);
-            }
+            gameHandler(payload, 'shameel');
         } else if (nomarIds.indexOf(id) > -1) {
             //nomar id
+            gameHandler(payload, 'nomar');
         } else if (omasIds.indexOf(id) > -1) {
             //omas id
+            gameHandler(payload, 'omas');
         }
     }
-    //on post call
-    //data = {"test":"test"};
 });
 
 io.on('connection', function(socket) {

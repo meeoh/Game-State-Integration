@@ -8,8 +8,8 @@ var app = angular.module('myapp', ['btford.socket-io'])
 
 app.controller('mainController', function($scope, $http, socket) {
 
-    socket.on('data', function(data) {
-        $scope.roundPercentage = data.roundPercentage;
+    socket.on('data:shameel', function(data) {
+        $scope.shameelRoundPercentage = data.roundPercentage;
         console.log(data);
     });
     

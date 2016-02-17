@@ -2,8 +2,8 @@
 
 <h1 class="shameel">
 	Shameel Status:  
-	<span ng-show="roundPercentage >= 0">{[{roundPercentage}]}% complete</span> 
-	<span ng-hide="roundPercentage >= 0 || done == 1">Not in game</span> 
+	<span ng-show="shameelRoundPercentage >= 0">{[{shameelRoundPercentage}]}% complete</span> 
+	<span ng-hide="shameelRoundPercentage >= 0 || done == 1">Not in game</span> 
 	<button type="submit" class="btn button-shameel" ng-class="{'btn-primary': shameelRequest, 'btn-success': !shameelRequest}" ng-disabled="!shameelRequest" ng-click="request('shameel')">{[{buttonText}]}</button>
 </h1> 
 
