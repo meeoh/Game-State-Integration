@@ -105,5 +105,5 @@ app.post('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-    console.log('socket connected');
+    //console.log('socket connected');
 });
