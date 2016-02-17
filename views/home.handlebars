@@ -1,12 +1,24 @@
-<div ng-controller="mainController">
+<div class="wrapper" ng-controller="mainController">
 
 <h1 class="shameel">
 	Shameel Status:  
 	<span ng-show="shameelPercentage >= 0">{[{shameelPercentage}]}% complete</span> 
 	<span ng-hide="shameelPercentage >= 0">Not in game</span> 
-	<button type="submit" class="btn button-shameel" ng-class="{'btn-primary': shameelRequest, 'btn-success': !shameelRequest}" ng-disabled="!shameelRequest" ng-click="request('shameel')">{[{buttonText}]}</button>
+	<button type="submit" class="btn button-shameel" ng-class="{'btn-primary': shameelRequest, 'btn-success': !shameelRequest}" ng-disabled="!shameelRequest" ng-click="request('shameel')">{[{shameelButtonText}]}</button>
 </h1> 
 
+<h1 class="nomar">
+	Nomar Status:  
+	<span ng-show="nomarPercentage >= 0">{[{nomarPercentage}]}% complete</span> 
+	<span ng-hide="nomarPercentage >= 0">Not in game</span> 
+	<button type="submit" class="btn button-nomar" ng-class="{'btn-primary': nomarRequest, 'btn-success': !nomarRequest}" ng-disabled="!nomarRequest" ng-click="request('nomar')">{[{nomarButtonText}]}</button>
+</h1> 
 
+<h1 class="omas">
+	Omas Status:  
+	<span ng-show="omasPercentage >= 0">{[{omasPercentage}]}% complete</span> 
+	<span ng-hide="omasPercentage >= 0">Not in game</span> 
+	<button type="submit" class="btn button-nomar" ng-class="{'btn-primary': omasRequest, 'btn-success': !omasRequest}" ng-disabled="!omasRequest" ng-click="request('omas')">{[{omasButtonText}]}</button>
+</h1> 
 
 </div>

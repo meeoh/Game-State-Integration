@@ -21,18 +21,33 @@ app.controller('mainController', function($scope, $http, socket) {
     });
     
     $scope.test = "test";
-    $scope.buttonText = "Request";
+    $scope.shameelButtonText = "Request";
     $scope.shameelRequest = true;
+    $scope.nomarButtonText = "Request";
+    $scope.nomarRequest = true;
+    $scope.omasButtonText = "Request";
+    $scope.omasRequest = true;
 
-    $scope.request = function(name) {
-        $scope.buttonText = "Requested";
-        $scope.shameelRequest = false;
+    var enableButton = function(name){
+        $scope.shameelButtonText = "Request";
+        $scope.shameelRequest = true;
+    }
+
+    $scope.request = function(name) {        
 
         if (name == 'shameel') {
+            $scope.shameelButtonText = "Requested";
+            $scope.shameelRequest = false;
+            console.log($scope.shameelRequest);
             $http.post('/request/shameel').then(function(res) {});
+            setTimeout(enableButton('shameel'), 1000);
         } else if (name == 'nomar') {
+            $scope.nomarButtonText = "Requested";
+            $scope.nomarRequest = false;
             $http.post('/request/nomar').then(function(res) {});
         } else {
+            $scope.omasButtonText = "Requested";
+            $scope.omasRequest = false;
             $http.post('/request/omas').then(function(res) {});
         }
     }
