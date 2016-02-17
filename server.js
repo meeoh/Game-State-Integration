@@ -41,9 +41,9 @@ var gameHandler = function(payload, player) {
     if (payload.provider.name == 'Counter-Strike: Global Offensive') {
         if (payload.map) {
             if (payload.map.round >= 0) {
-                console.log('setting data');
+                console.log('setting csgo data ' + player);
                 var roundPercentage = Math.floor(payload.map.round / 30 * 100);
-                var data = { 'roundPercentage': roundPercentage };
+                var data = { 'percentage': roundPercentage };
                 io.emit('data:' + player, data);
             }
         } else {
@@ -52,6 +52,19 @@ var gameHandler = function(payload, player) {
         }
     } else if (payload.provider.name == 'Dota 2') {
         //find out how to calculate dota percentage
+        if(payload.map){
+            if(payload.map.game_time){
+                console.log('setting dota data');
+                var gamePercentage = Math.floor(payload.map.game_time / 2400 * 100);
+                var data = { 'percentage': gamePercentage };
+                io.emit('data:' + player, data);
+            }
+        }
+        else {
+            var data = { 'done': 1 };
+            io.emit('data:' + player, data);
+        }
+
     } else {
         var data = { 'done': 1 };
         io.emit('data:' + player, data);
