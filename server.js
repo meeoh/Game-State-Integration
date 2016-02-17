@@ -23,25 +23,8 @@ app.use(express.static(__dirname + '/public'));
 var shameelIds = ["76561198192749214", "76561198009694224"];
 var nomarIds = ["76561198052716620"];
 var omasIds = ["76561197998478010"];
-var inGame = 0;
 
 
-var countdown = 10;
-var onInterval = function() {
-    countdown--;
-    if (inGame == 1) {
-
-    } else {
-        console.log("not in game for too long, resetting");
-        var data = { 'done': 1 };
-        io.emit('data', data);
-
-    }
-    countdown = 10;
-    clearInterval(myInterval);
-    var myInterval = setInterval(onInterval, 10);
-};
-var myInterval = setInterval(onInterval, 100);
 
 
 app.use(bodyParser.json());
@@ -72,7 +55,6 @@ app.post('/', function(req, res) {
             //console.log(payload);
             if (payload.map) {
                 if (payload.map.round >= 0) {
-                    inGame = 1;
                     console.log('setting data');
                     var roundPercentage = Math.floor(payload.map.round / 30 * 100);
                     var data = { 'roundPercentage': roundPercentage };
