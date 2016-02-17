@@ -52,8 +52,7 @@ var gameHandler = function(payload, player) {
         }
     } else if (payload.provider.name == 'Dota 2') {
         //find out how to calculate dota percentage
-    }
-    else {
+    } else {
         var data = { 'done': 1 };
         io.emit('data:' + player, data);
     }
