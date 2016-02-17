@@ -26,7 +26,7 @@ var omasIds = ["76561197998478010"];
 var inGame = 0;
 
 
-countdown = 10;
+var countdown = 10;
 var onInterval = function() {
     console.log(countdown);
     countdown--;
