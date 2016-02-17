@@ -41,7 +41,7 @@ var gameHandler = function(payload, player) {
     if (payload.provider.name == 'Counter-Strike: Global Offensive') {
         if (payload.map) {
             if (payload.map.round >= 0) {
-                console.log('setting csgo data ' + player);
+                //console.log('setting csgo data ' + player);
                 var roundPercentage = Math.floor(payload.map.round / 30 * 100);
                 var data = { 'percentage': roundPercentage };
                 io.emit('data:' + player, data);
