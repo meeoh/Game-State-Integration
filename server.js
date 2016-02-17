@@ -34,7 +34,7 @@ app.set('view engine', 'handlebars');
 
 
 app.get('/', function(req, res) {
-    res.render('home', { "data": data });
+    res.render('home');
 });
 
 app.post('/request/:name', function(req, res) {
