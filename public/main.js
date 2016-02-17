@@ -39,8 +39,7 @@ app.controller('mainController', function($scope, $http, socket) {
             $scope.shameelButtonText = "Requested";
             $scope.shameelRequest = false;
             console.log($scope.shameelRequest);
-            $http.post('/request/shameel').then(function(res) {});
-            setTimeout(enableButton('shameel'), 1000);
+            $http.post('/request/shameel').then(function(res) {});            
         } else if (name == 'nomar') {
             $scope.nomarButtonText = "Requested";
             $scope.nomarRequest = false;
