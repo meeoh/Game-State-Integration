@@ -41,7 +41,7 @@ var onInterval = function() {
     clearInterval(myInterval);
     var myInterval = setInterval(onInterval, 10);
 };
-var myInterval = setInterval(onInterval, 10);
+var myInterval = setInterval(onInterval, 100);
 
 
 app.use(bodyParser.json());
