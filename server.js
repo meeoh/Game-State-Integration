@@ -28,12 +28,11 @@ var inGame = 0;
 
 var countdown = 10;
 var onInterval = function() {
-    console.log(countdown);
     countdown--;
     if (inGame == 1) {
 
     } else {
-
+        console.log("not in game for too long, resetting");
         var data = { 'done': 1 };
         io.emit('data', data);
 
