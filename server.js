@@ -87,7 +87,7 @@ app.post('/request/:name', function(req, res) {
 
 app.post('/', function(req, res) {
     // console.log('posted');
-    console.log(req.body);
+    // console.log(req.body);
     var payload = req.body;
     if (payload.provider.steamid || payload.player.steamid) {
         var id = payload.provider.steamid || payload.player.steamid;
