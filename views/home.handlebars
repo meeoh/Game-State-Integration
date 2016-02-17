@@ -21,4 +21,6 @@
 	<button type="submit" class="btn button-nomar" ng-class="{'btn-primary': omasRequest, 'btn-success': !omasRequest}" ng-disabled="!omasRequest" ng-click="request('omas')">{[{omasButtonText}]}</button>
 </h1> 
 
+<button ng-click="request('all')" ng-disabled="!allRequest" ng-class="{'btn-danger': allRequest, 'btn-success': !allRequest}" class="allButton btn">{[{allButtonText}]}</button>
+
 </div>

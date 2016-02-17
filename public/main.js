@@ -27,6 +27,8 @@ app.controller('mainController', function($scope, $http, $timeout, socket) {
     $scope.nomarRequest = true;
     $scope.omasButtonText = "Request";
     $scope.omasRequest = true;
+    $scope.allButtonText = "REQUEST ALL";
+    $scope.allRequest = true;
 
 
     $scope.request = function(name) {
@@ -36,7 +38,6 @@ app.controller('mainController', function($scope, $http, $timeout, socket) {
             $scope.shameelRequest = false;
             $http.post('/request/shameel').then(function(res) {});
             $timeout(function() {
-                console.log('test');
                 $scope.shameelButtonText = "Request";
                 $scope.shameelRequest = true;
                 console.log($scope.shameelRequest);
@@ -46,19 +47,26 @@ app.controller('mainController', function($scope, $http, $timeout, socket) {
             $scope.nomarRequest = false;
             $http.post('/request/nomar').then(function(res) {});
             $timeout(function() {
-                console.log('test');
                 $scope.nomarButtonText = "Request";
                 $scope.nomarRequest = true;
                 console.log($scope.omasRequest);
             }, 60000);
-        } else {
+        } else if (name == 'omas') {
             $scope.omasButtonText = "Requested";
             $scope.omasRequest = false;
             $http.post('/request/omas').then(function(res) {});
             $timeout(function() {
-                console.log('test');
                 $scope.omasButtonText = "Request";
                 $scope.omasRequest = true;
+                console.log($scope.omasRequest);
+            }, 60000);
+        } else {
+            $scope.allButtonText = "Requested";
+            $scope.allRequest = false;
+            $http.post('/request/all').then(function(res) {});
+            $timeout(function() {
+                $scope.allButtonText = "REQUEST ALL";
+                $scope.allRequest = true;
                 console.log($scope.omasRequest);
             }, 60000);
         }
