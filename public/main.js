@@ -1,4 +1,4 @@
-var app = angular.module('myapp', ['btford.socket-io'])
+var app = angular.module('myapp', ['btford.socket-io', 'angular-web-notification'])
     .config(function($interpolateProvider) {
         $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
     })
@@ -6,12 +6,30 @@ var app = angular.module('myapp', ['btford.socket-io'])
         return socketFactory();
     });
 
-app.controller('mainController', function($scope, $http, $timeout, socket) {
+app.controller('mainController', function($scope, $http, $timeout, socket, webNotification) {
+
+
 
     socket.on('data:shameel', function(data) {
-        if(data.percentage != $scope.shameelPercentage) {
+        if (data.percentage != $scope.shameelPercentage) {
             console.log("CHANGE");
-        }        
+            var audio = new Audio("whip.mp3");
+            audio.play();
+            webNotification.showNotification('Example Notification', {
+                body: 'Notification Text...',
+                icon: 'my-icon.ico',
+                onClick: function onNotificationClicked() {
+                    console.log('Notification clicked.');
+                },
+                autoClose: 4000 //auto close the notification after 4 seconds (you can manually close it via hide function)
+            }, function onShow(error, hide) {
+                if (error) {
+                    window.alert('Unable to show notification: ' + error.message);
+                } else {
+                    console.log('Notification Shown.');
+                }
+            });
+        }
         $scope.shameelPercentage = data.percentage;
     });
 
