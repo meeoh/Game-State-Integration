@@ -9,6 +9,9 @@ var app = angular.module('myapp', ['btford.socket-io'])
 app.controller('mainController', function($scope, $http, $timeout, socket) {
 
     socket.on('data:shameel', function(data) {
+        if(data.percentage != $scope.shameelPercentage) {
+            console.log("CHANGE");
+        }        
         $scope.shameelPercentage = data.percentage;
     });
 
