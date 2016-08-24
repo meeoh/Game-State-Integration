@@ -47,9 +47,11 @@ var gameHandler = function(payload, player) {
                 var roundPercentage = Math.floor(payload.map.round / 30 * 100);
                 var data = { 'percentage': roundPercentage, 'win': false };
 
-                if (payload.round.win_team.toUpperCase() == payload.player.team.toUpperCase()) {
-                    data.win = true;
-                }
+		if (payload.round && payload.round.win_team) {
+	                if (payload.round.win_team.toUpperCase() == payload.player.team.toUpperCase()) {
+	                    data.win = true;
+	                }
+		}
                 io.emit('data:' + player, data);
             }
         } else {

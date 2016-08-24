@@ -13,9 +13,15 @@ app.controller('mainController', function($scope, $http, $timeout, socket, webNo
     socket.on('data:shameel', function(data) {
         console.log(data);
         if (data.percentage != $scope.shameelPercentage) {
+	    if (data.win) {
+                var audio = new Audio("whip.mp3");
+                audio.play();
+	    }
+	    else {
+	//	var audio = new Audio("");
+	//	audio.play();
+	    }
             console.log("CHANGE");
-            var audio = new Audio("whip.mp3");
-            audio.play();
             webNotification.showNotification('Example Notification', {
                 body: 'Notification Text...',
                 icon: 'my-icon.ico',
