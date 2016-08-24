@@ -38,6 +38,8 @@ app.get('/', function(req, res) {
 
 var gameHandler = function(payload, player) {
 
+    console.log(payload);
+
     if (payload.provider.name == 'Counter-Strike: Global Offensive') {
         if (payload.map) {
             if (payload.map.round >= 0) {
