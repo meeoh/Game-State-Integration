@@ -18,8 +18,8 @@ app.controller('mainController', function($scope, $http, $timeout, socket, webNo
                 audio.play();
 	    }
 	    else {
-	//	var audio = new Audio("");
-	//	audio.play();
+		var audio = new Audio("fart.mp3");
+		audio.play();
 	    }
             console.log("CHANGE");
             webNotification.showNotification('Example Notification', {
