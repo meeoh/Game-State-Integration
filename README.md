@@ -7,7 +7,7 @@ Features include:
 - time spent in game
 - current round
 - request button (request to not start another game/come upstairs)
-- Plays whip noise on won round and fart noise on lost round
+- plays whip noise on won round and fart noise on lost round
 
 ##Usage
 Run npm install<br>
