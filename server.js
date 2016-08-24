@@ -54,7 +54,7 @@ var gameHandler = function(payload, player) {
         //find out how to calculate dota percentage
         if(payload.map){
             if(payload.map.game_time){
-                console.log('setting dota data');
+                //console.log('setting dota data');
                 var gamePercentage = Math.floor(payload.map.game_time / 2400 * 100);
                 var data = { 'percentage': gamePercentage };
                 io.emit('data:' + player, data);
