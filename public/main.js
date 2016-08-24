@@ -11,7 +11,7 @@ app.controller('mainController', function($scope, $http, $timeout, socket, webNo
 
 
     socket.on('data:shameel', function(data) {
-        console.log(data);
+        //console.log(data);
         if (data.percentage != $scope.shameelPercentage) {
 	    if (data.win) {
                 var audio = new Audio("whip.mp3");
@@ -21,19 +21,19 @@ app.controller('mainController', function($scope, $http, $timeout, socket, webNo
 		var audio = new Audio("fart.mp3");
 		audio.play();
 	    }
-            console.log("CHANGE");
+            //console.log("CHANGE");
             webNotification.showNotification('Example Notification', {
                 body: 'Notification Text...',
                 icon: 'my-icon.ico',
                 onClick: function onNotificationClicked() {
-                    console.log('Notification clicked.');
+                    //console.log('Notification clicked.');
                 },
                 autoClose: 4000 //auto close the notification after 4 seconds (you can manually close it via hide function)
             }, function onShow(error, hide) {
                 if (error) {
                     window.alert('Unable to show notification: ' + error.message);
                 } else {
-                    console.log('Notification Shown.');
+                    //console.log('Notification Shown.');
                 }
             });
         }
