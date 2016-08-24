@@ -38,14 +38,18 @@ app.get('/', function(req, res) {
 
 var gameHandler = function(payload, player) {
 
-    console.log(payload);
+    //round.win_team
 
     if (payload.provider.name == 'Counter-Strike: Global Offensive') {
         if (payload.map) {
             if (payload.map.round >= 0) {
                 //console.log('setting csgo data ' + player);
                 var roundPercentage = Math.floor(payload.map.round / 30 * 100);
-                var data = { 'percentage': roundPercentage };
+                var data = { 'percentage': roundPercentage, 'win': false };
+
+                if (payload.round.win_team.toUpperCase() == payload.player.team.toUpperCase()) {
+                    data.win = true;
+                }
                 io.emit('data:' + player, data);
             }
         } else {

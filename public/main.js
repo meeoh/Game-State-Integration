@@ -11,6 +11,7 @@ app.controller('mainController', function($scope, $http, $timeout, socket, webNo
 
 
     socket.on('data:shameel', function(data) {
+        console.log(data);
         if (data.percentage != $scope.shameelPercentage) {
             console.log("CHANGE");
             var audio = new Audio("whip.mp3");
