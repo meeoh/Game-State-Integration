@@ -11,5 +11,6 @@ Features include:
 
 ##Usage
 Run npm install<br>
+Put the file gamestate_integration_consolesample.cfg in X:\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_consolesample.cfg <br>
 Run node server.js<br>
 Go to ip of host port 3000
