@@ -38,9 +38,8 @@ app.get('/', function(req, res) {
 
 var gameHandler = function(payload, player) {
 
-    //round.win_team
-
     if (payload.provider.name == 'Counter-Strike: Global Offensive') {
+        //console.log(payload);
         if (payload.map) {
             if (payload.map.round >= 0) {
                 //console.log('setting csgo data ' + player);

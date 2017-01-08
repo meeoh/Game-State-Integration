@@ -9,18 +9,19 @@ var app = angular.module('myapp', ['btford.socket-io', 'angular-web-notification
 app.controller('mainController', function($scope, $http, $timeout, socket, webNotification) {
 
     socket.on('data:shameel', function(data) {
-        console.log(data);
-        $scope.shameelPercentage = data.percentage;
-        console.log($scope.shameelPercentage);
+        //console.log(data);
         if (data.percentage != $scope.shameelPercentage) {
+        console.log(data);
+        console.log($scope.shameelPercentage);
 	    if (data.win && data.percentage > $scope.shameelPercentage) {
                 var audio = new Audio("whip.mp3");
                 audio.play();
 	    }
-	    else if (!data.win && data.percentage > $scope.shameelPercentage && $scope.shameelPercentage > 0) {
+	    else if (data.percentage > $scope.shameelPercentage && $scope.shameelPercentage > 0) {
 		var audio = new Audio("fart.mp3");
 		audio.play();
 	    }
+        $scope.shameelPercentage = data.percentage;
             //console.log("CHANGE");
             webNotification.showNotification('Example Notification', {
                 body: 'Notification Text...',
