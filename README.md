@@ -9,7 +9,7 @@ Features include:
 - request button (request to not start another game/come upstairs)
 - plays whip noise on won round and fart noise on lost round
 
-##Usage
+## Usage
 Run npm install<br>
 Put the file gamestate_integration_consolesample.cfg in X:\Steam\steamapps\common\Counter-Strike Global Offensive\csgo\cfg\gamestate_integration_consolesample.cfg <br>
 Run node server.js<br>
